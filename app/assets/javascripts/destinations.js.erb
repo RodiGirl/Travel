@@ -2,7 +2,7 @@
 $(document).ready(function (){
 
 function initialize() {
-
+	 
     
 	var mapOptions = {
 	  zoom: 15,
@@ -11,20 +11,28 @@ function initialize() {
 	}
 
     var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+    var bounds = new google.maps.LatLngBounds();
+    var infowindow = new google.maps.InfoWindow();
 
+    for(var i in sites)
+    {
+    	var p = sites[i];
+    	var latlng = new google.maps.LatLng(p[1], p[2]);
+    	bounds.extend(latlng);
 
-	var marker, i;
+    	var marker = new google.maps.Marker ({
+    		position: latlng,
+    		map: map,
+    		title: p[0]
+    	});
 
-    for (i = 0; i < sites.length; i++) {  
-      marker = new google.maps.Marker({
-        position: new google.maps.LatLng(sites[i][1], sites[i][2]),
-        map: map
-        });
-     
-
-  }
+    	google.maps.event.addListener(marker, 'click', function() {
+    		infowindow.setContent(this.title);
+    		infowindow.open(map,this);
+    	});
+    }
+    map.fitBounds(bounds);
 }
-
 google.maps.event.addDomListener(window, 'load', initialize);
 
 

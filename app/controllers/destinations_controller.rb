@@ -7,7 +7,7 @@
     @destinations = Destination.all
   
 
-    @latlongarray = Destination.all.collect {|destination| [destination.address, destination.latitude, destination.longitude]}
+    @latlongarray = Destination.all.collect {|destination| [destination.address, destination.latitude, destination.longitude, destination.description]}
 
 
   end
