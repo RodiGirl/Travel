@@ -1,0 +1,47 @@
+<h1>Travel Site</h1>
+<p>This is Courtney's badass site. Here is the list of the countries I'd like visit.</p>
+
+<ul>
+
+<% @destinations.each do |destination| %>
+	<li><%=  destination.city %>, <%= destination.country %></li>
+<% end %>	
+</ul>
+
+<!-- <div id="map-canvas"></div> -->
+
+
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Jaime's Additional Problem</div>
+
+  <!-- Table -->
+  <table class="table">
+    	<thead>
+    		<tr>
+    		<% @united_states.each do |key,value| %>
+    			<th><%= key.sub(/_/," "	).titlecase %> </th>
+    			
+    		<% end %>
+    			
+    	    </tr>
+    	    </thead>
+    	    <tbody>
+    	    <tr>
+    	    	<% @united_states.each do |key, value| %>
+    	    		<% if key != "flag_colors" %>
+    	    			<th><%= value %></th>
+    	    		<% else %>
+    	    			<th><%= value.join(", ") %></th>
+    	    			<% end %>
+    	    	<% end %>
+    	    	
+    	    </tr>
+    	    </tbody>
+    	
+  </table>
+</div>
+
+
+
+<%= image_tag "peru1.jpg",  alt: "Peru" %>
